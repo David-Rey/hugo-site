@@ -2,7 +2,7 @@ baseURL = "http://example.org/"
 languageCode = "en-us"
 paginate = 6
 summarylength = 10
-title = "David"
+title = "David Reynolds"
 theme = "blogge-hugo-theme"
 
 [menu]
@@ -22,19 +22,19 @@ theme = "blogge-hugo-theme"
 [params]
   summarylength = 80
   logo = "images/logo.svg"
-  author = "Mary Astor"
+  author = "David Reynolds"
   authorThumb = "images/author.png"
-  authorAddress = "Lorem 142 Str., 2352, Ipsum, State, USA"
-  instaUsername = "mary_astor"
-  facebookUsername = "mary_astor"
-  twitterUsername = "mary_astor"
-  linkedinUsername = "mary_astor"
+  
+  youtubeChannelId = "UCqnoRx37mPhrAjXMxSDOA6w"
+  githubUsername = "David-Rey"
+  linkedinUsername = "david-reynolds-2b47471b9"
+  
   blogTitle = "Articles"
   blogSubTitle = "View the latest news on Blogger"
   trendingBlogIcon = "images/blog/icon.svg"
   # Replace the third party URL/API with yours
   # We're using formspree.io for form handling, paste your formspree url below
-  fabformURL  = "9AJk8ro"
+  fabformURL  = "-lqzRHE"
   googleMapAPI = "AIzaSyC9rV6yesIygoVKTD6QLf_iCa9eiIIHqZ0"
 
 [taxonomies]
