@@ -1,4 +1,4 @@
-baseURL = "https://davidreynolds.xyz/"
+baseURL = "https://davidreynolds.xyz"
 languageCode = "en-us"
 paginate = 6
 summarylength = 10
