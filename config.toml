@@ -18,10 +18,6 @@ theme = "blogge-hugo-theme"
     name = "Contact"
     url= "contact"
     weight= 3
-  [[menu.main]]
-    name = "Resume"
-    url= "resume"
-    weight= 4
 
 [params]
   summarylength = 80
