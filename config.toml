@@ -1,4 +1,4 @@
-baseURL = "http://example.org/"
+baseURL = "https://davidreynolds.xyz/"
 languageCode = "en-us"
 paginate = 6
 summarylength = 10
@@ -18,6 +18,10 @@ theme = "blogge-hugo-theme"
     name = "Contact"
     url= "contact"
     weight= 3
+  [[menu.main]]
+    name = "Resume"
+    url= "resume"
+    weight= 4
 
 [params]
   summarylength = 80
@@ -32,8 +36,10 @@ theme = "blogge-hugo-theme"
   blogTitle = "Articles"
   blogSubTitle = "View the latest news on Blogger"
   trendingBlogIcon = "images/blog/icon.svg"
+
   # Replace the third party URL/API with yours
   # We're using formspree.io for form handling, paste your formspree url below
+
   fabformURL  = "-lqzRHE"
   googleMapAPI = "AIzaSyC9rV6yesIygoVKTD6QLf_iCa9eiIIHqZ0"
 

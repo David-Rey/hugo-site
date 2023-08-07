@@ -1,5 +1,5 @@
 ---
-  title: "Welcome to My Personal Blog"
+  title: "The Beginning of Something New"
   date: 2023-08-03T12:00:00+06:00
   featured: true
   tags: "personal"
@@ -9,30 +9,15 @@
   featureImage: /images/blog/welcome-to-my-personal-blog/front-picture.png
 ---
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos accusam et justo duo dolores ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+In this blog, I aim to catalog both the projects I've completed and those I plan to tackle in the future. This blog not only serves as a record of these projects but also as a visual index of my progress. From crafting a Minecraft calculator in middle school to designing a complete flight computer PCB from scratch, there's value in reflecting on our progress and appreciating how far we've come.
 
-consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+![](/images/blog/welcome-to-my-personal-blog/MC-snip-old.png) ![](/images/blog/welcome-to-my-personal-blog/MC-snip-new.png)
 
-consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+The two images above showcase Minecraft Redstone calculators, both designed by me. For those who aren't familiar, Redstone is an element in the video game Minecraft that allows users to create logic gates, which in turn can be used to construct calculators and computers. One of these calculators was built by 11-year-old me, while the other was the work of 17-year-old me. Can you distinguish between the two? Unsurprisingly, the more complex calculator at the bottom of the picture is the creation of my 17-year-old self, whereas the top one was assembled when I was only 11.
 
-### Make better business
+I bring this up to underscore a fundamental truth about learning and personal development. Whether we're creating Redstone calculators or learning to code, progress often feels elusive on a day-to-day scale.
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos accusam et justo duo dolores ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+> You often don't realize how far you've come until you look back at where you started
 
-consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-
-> You’ve got to get up every morning with determination if you’re going to go to bed with satisfaction.
-
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos accusam et justo duo dolores ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
-
-consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-
-![](/images/blog/feature-image-05.jpg)
-
-### The Dreamy Not Factors
-
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos accusam et justo duo dolores ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
-
-consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+This encapsulates the purpose of my blog – to provide a platform where I can look back to appreciate the journey, as well as project what lies ahead.
