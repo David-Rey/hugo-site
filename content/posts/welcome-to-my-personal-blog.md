@@ -9,7 +9,7 @@
   featureImage: /images/blog/welcome-to-my-personal-blog/front-picture.png
 ---
 
-In this blog, I aim to catalog both the projects I've completed and those I plan to tackle in the future. This blog not only serves as a record of these projects but also as a visual index of my progress. From crafting a Minecraft calculator in middle school to designing a complete flight computer PCB from scratch, there's value in reflecting on our progress and appreciating how far we've come.
+On this website, I aim to catalog both the projects I've completed and those I plan to tackle in the future. This website not only serves as a record of these projects but also as a visual index of my progress. From crafting a Minecraft calculator in middle school to designing a complete flight computer PCB from scratch, there's value in reflecting on our progress and appreciating how far we've come.
 
 
 ![](/images/blog/welcome-to-my-personal-blog/MC-snip-old.png) ![](/images/blog/welcome-to-my-personal-blog/MC-snip-new.png)
@@ -20,4 +20,4 @@ I bring this up to underscore a fundamental truth about learning and personal de
 
 > You often don't realize how far you've come until you look back at where you started
 
-This encapsulates the purpose of my blog – to provide a platform where I can look back to appreciate the journey, as well as project what lies ahead.
+This encapsulates the purpose of my website – to provide a platform where I can look back to appreciate the journey, as well as project what lies ahead.
