@@ -20,19 +20,20 @@ Ares is an all-in-one flight computer designed specifically for model rockets. I
 The functionality of Ares can be segmented into three primary components: Input, Computation, and Output.
 
 #### Input:
-Ares is equipped with an IMU (Inertial Measurement Unit) that integrates an accelerometer, gyroscope, and magnetometer. This primary sensor provides Ares with data on its orientation, position, and velocity. Complementing the IMU is a pressure sensor, vital for position estimates and determining the rocket's maximum altitude. Additionally, two backup accelerometers, each connected to one of the MCUs, bolster the data pool. While accelerometers might not match the precision of an IMU, they enhance the system's state estimation.
+Ares is equipped with an IMU (Inertial Measurement Unit) that integrates an accelerometer, gyroscope, and magnetometer. This primary sensor provides Ares with data on its orientation, position, and velocity. Complementing the IMU is a pressure sensor, vital for position estimates and determining the rocket's maximum altitude. Additionally, two backup accelerometers, each connected to one of the MCUs, add additional information. While accelerometers might not match the precision of an IMU, they enhance the system's state estimation.
 
 #### Computation:
 The core of the computation process is the Navigation Computer, powered by an STM32L1. This unit collates all sensor inputs via SPI and relays a state estimate to the Flight Control Computer (FCC) using UART.
 
 ![](/images/blog/ares-flight-computer/block.jpeg)
 
-Beyond sensors, the Navigation Computer supports Serial Wire Debug (SWD) connections (essential for programming), USB for efficient data extraction, and LED indicators that communicate the computer's status. The bridge between the two microcontrollers is a UART connection, facilitating seamless data exchange.
+Beyond sensors, the Navigation Computer supports Serial Wire Debug (SWD) connections (essential for programming), USB for efficient data extraction, and LED indicators that communicate the computer's status. The bridge between the two microcontrollers is a UART connection, facilitating data exchange.
 
 #### Output:
-The FCC, true to its name, is entrusted with the task of rocket control. Its responsibilities span PWM outputs for servos (for thrust vector control), GPIO controls to manage a reaction wheel, and pyrotechnic channels to initiate parachute deployment. However, the FCC's role isn't confined to mere control; it also shoulders the duty of data logging. There are dual pathways for this: a flash chip connected via SPI and a micro SD card. While the rocket is airborne, the flash chip captures data in real-time. Once the rocket attains a safe state post-flight, this data is transferred to the SD card, ensuring data integrity and ease of access.
+The Flight Control Computer, true to its name, is entrusted with the task of rocket control. Its responsibilities span PWM outputs for servos (for thrust vector control), GPIO controls to manage a reaction wheel, and pyrotechnic channels to initiate parachute deployment. However, the FCC's role isn't confined to mere control; it also holds the duty of data logging. There are dual pathways for this: a flash chip connected via SPI and a micro SD card. While the rocket is airborne, the flash chip captures data in real-time. Once the rocket is in a safe state post-flight, this data is transferred to the SD card, ensuring data integrity and ease of access.
 
 Through the sensors, MCUs, and connectivity solutions, Ares stands as a fully-functional flight computer.
+
 
 
 <p align="center">
@@ -46,6 +47,7 @@ Through the sensors, MCUs, and connectivity solutions, Ares stands as a fully-fu
 However, my journey to design Ares was not without challenges. I embarked on this project in the summer of 2021, precisely when the world was grappling with a severe chip shortage. This restricted my options significantly in terms of part selection. Luckily I bought some of the parts before I started the design so the chip shortage did not affect me as much.
 
 For the PCB design, I turned to KiCad—a free and open-source PCB design software. The process of making ares started before I made the block diagram. Crafting an all-encompassing flight computer demands a wealth of experience for effective execution. To that end, there were two precursor designs before Ares.
+
 
 ![](/images/blog/ares-flight-computer/progress.PNG)
 
@@ -64,7 +66,6 @@ Part List:
 - Flash Chip: W25Q32JVSS
 - Radio: nRF24L01P
 
-The part files can be downloaded on my GitHub page linked here.
 
 ## What I learned
 
