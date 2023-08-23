@@ -75,3 +75,8 @@ The journey of crafting Ares was an enlightening one, although not devoid of cha
 
 Personally, hands-on projects have always been the most effective method for me to acquire a new skill. My inspiration for this project was kindled by YouTube creators: Joe Barnard, who constructed a flight computer, and Phil from "Phil's Lab," who introduced me to the nuances of PCB design. Drawing inspiration from these talented creators and immersing myself in hands-on experimentation has not only honed my skills but also fueled my passion for rocketry and electronics.
 
+<p align="center">
+<iframe width="700" height="350"
+src="https://www.youtube.com/embed/V7Fv0wA5XYY">
+</iframe>
+</p>
