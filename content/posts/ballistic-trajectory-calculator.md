@@ -65,7 +65,7 @@ The second mode showcases a 3D simulation. Various parameters can be adjusted at
 
 
 <p align="center">
-<iframe width="700" height="350"
+<iframe width="600" height="350"
 src="https://www.youtube.com/embed/2kiqtY2RG2o">
 </iframe>
 </p>
