@@ -5,7 +5,7 @@
   tags: "personal"
   tranding: false
   readTime: "2 min"
-  thumbnail: /images/featured-post.jpg
+  thumbnail: /images/featured-post-new.jpg
   featureImage: /images/blog/welcome-to-my-personal-blog/front-picture.png
 ---
 
