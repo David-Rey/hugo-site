@@ -38,5 +38,8 @@ theme = "blogge-hugo-theme"
 [taxonomies]
   tag = "tags"
 
+[params]
+  math = true
+
 [markup.goldmark.renderer]
   unsafe = true # Allow HTML in md files
