@@ -246,7 +246,7 @@ The animation below is a visual overview of the landing with the associated land
 
 <p align="center">
     <video controls width="700">
-        <source src="/images/blog/6-dof-mars-landing/rocket_animation.mp4" type="video/mp4">
+        <source src="/images/blog/6-dof-mars-landing/rocket_animation_s.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 </p>
