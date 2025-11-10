@@ -244,7 +244,12 @@ The powered descent phase of a mars landing can be broken down in two different 
 
 The animation below is a visual overview of the landing with the associated landing burn phase and constant velocity phase.
 
-{{< video src="/images/blog/6-dof-mars-landing/rocket_animation.mp4" width="700" >}}
+<p align="center">
+    <video controls width="700">
+        <source src="/images/blog/6-dof-mars-landing/rocket_animation.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</p>
 
 <p align="center">
   <img src="/images/blog/6-dof-mars-landing/6dof_control.png" alt="Alt text" width="600">
