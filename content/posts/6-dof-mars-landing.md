@@ -1,7 +1,7 @@
 ---
-  title: "6 Degree of Freedom Optimal Mars Landing"
+  title: "Optimal Mars Landing"
   date: 2025-03-03T12:00:00+06:00
-  featured: false
+  featured: true
   tags: "tech"
   tranding: true
   readTime: "4 min"

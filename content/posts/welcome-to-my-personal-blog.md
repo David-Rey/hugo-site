@@ -1,7 +1,7 @@
 ---
   title: "The Beginning of Something New"
   date: 2023-08-03T12:00:00+06:00
-  featured: true
+  featured: false
   tags: "personal"
   tranding: false
   readTime: "2 min"
