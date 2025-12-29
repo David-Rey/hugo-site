@@ -2,7 +2,7 @@
   title: "Starship Control with LQR"
   date: 2025-12-27T12:00:00+06:00
   featured: false
-  tags: "tech"
+  tags: "software"
   tranding: true
   readTime: "6 min"
   thumbnail: /images/blog/starship/starship_thumbnail.png

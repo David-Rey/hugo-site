@@ -2,7 +2,7 @@
   title: "Optimal Mars Landing"
   date: 2025-03-03T12:00:00+06:00
   featured: true
-  tags: "tech"
+  tags: "software"
   tranding: true
   readTime: "4 min"
   thumbnail: /images/blog/6-dof-mars-landing/featureImage.png

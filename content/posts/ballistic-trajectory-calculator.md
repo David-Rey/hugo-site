@@ -2,7 +2,7 @@
   title: "MATLAB Ballistic Trajectory Calculator"
   date: 2023-08-23T12:00:00+06:00
   featured: false
-  tags: "tech"
+  tags: "software"
   tranding: true
   readTime: "4 min"
   thumbnail: /images/blog/ballistic-trajectory-calculator/thumbnail.PNG
