@@ -45,6 +45,11 @@ where:
 
 The dynamics for starship (and any rigid body) are defined below
 
+
+<div style="text-align:center">
+  ![Eq1](https://latex.codecogs.com/svg.image?\dot{p}_I=\mathbf{C}_{BI}v_B)
+</div>
+
 $$\dot{p}_I = \mathbf{C}_{BI} v_B$$
 
 $$\dot{v}_B = \frac{F_b}{m} + \mathbf{C}_{IB}(q) g$$
