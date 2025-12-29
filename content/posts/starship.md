@@ -13,11 +13,11 @@
 Starship is one of the most interesting aerospace vehicles in existence. It is slated as the rocket that will send humanity to Mars, however I find it interesting for another reason, the controls. Looking at the Starship it does not have wings like a plane rather it has flaps and flies like a skydiver. This unconventional "belly flop" maneuver has left many wondering—how do you actually control such a vehicle?
 <p align="center">
 <iframe width="600" height="350"
-src="https://youtu.be/gA6ppby3JC8">
+src="https://youtu.be/gA6ppby3JC8?t=54">
 </iframe>
 </p>
 
-To answer that question for myself, I took on the challenge of developing a full 6 Degree of Freedom (6-DOF) simulation. Building a high-fidelity model was the only way to truly capture the nuances of Starship’s flight. However, the simulation is only as good as the physics behind it, and the first major problem I encountered was getting an accurate aerodynamic model for such a complex shape. Luckily Peter Sharpe did this exact thing for his PhD during his time at MIT. He created something called the Aerosandbox which uses a neural net (Neuralfoil) to estimate aerodynamics coefficients for a given wing or fuselage at any orientation of the wing. The full library did way more but that is what I used it for, I encourage you to check it out. 
+To answer that question for myself, I took on the challenge of developing a full 6 Degree of Freedom (6-DOF) simulation. Building a high-fidelity model was the only way to truly capture the nuances of Starship’s flight. However, the simulation is only as good as the physics behind it, and the first major problem I encountered was getting an accurate aerodynamic model for such a complex shape. Luckily Peter Sharpe did this exact thing for his PhD during his time at MIT. He created something called the Aerosandbox which uses a neural net (Neuralfoil) to estimate aerodynamics coefficients for a given wing or fuselage at any orientation. The full library did way more but that is what I used it for, I encourage you to check it out. 
 
 https://github.com/peterdsharpe/AeroSandbox
 
