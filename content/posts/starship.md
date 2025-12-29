@@ -185,7 +185,7 @@ Below is an animation of the controller working with added disturbances. In the 
 </p>
 
 <p align="center">
-  <img src="/images/blog/starship/angle_plot.png" alt="Alt text" width="600">
+  <img src="/images/blog/starship/angle_plot_2.png" alt="Alt text" width="600">
 </p>
 
 As one can see the pitch and yaw controllers are working to keep starship in its proper orientation. 
