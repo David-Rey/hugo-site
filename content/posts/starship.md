@@ -46,17 +46,23 @@ where:
 The dynamics for starship (and any rigid body) are defined below
 
 
-<div style="text-align:center">
-  ![Eq1](https://latex.codecogs.com/svg.image?\dot{p}_I=\mathbf{C}_{BI}v_B)
-</div>
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\dot{p}_I=\mathbf{C}_{BI}v_B" />
+</p>
 
-$$\dot{p}_I = \mathbf{C}_{BI} v_B$$
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\dot{v}_B = \frac{F_b}{m} + \mathbf{C}_{IB}(q) g" />
+</p>
 
-$$\dot{v}_B = \frac{F_b}{m} + \mathbf{C}_{IB}(q) g$$
 
-$$\dot{q} = \frac{1}{2} \boldsymbol{\Omega}(\omega) q$$
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\dot{q} = \frac{1}{2} \boldsymbol{\Omega}(\omega) q" />
+</p>
 
-$$\dot{\omega} = \mathbf{I}_b^{-1} \left(M_b - \omega \times (\mathbf{I}_b \omega) \right)$$
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\dot{\omega} = \mathbf{I}_b^{-1} \left(M_b - \omega \times (\mathbf{I}_b \omega) \right)" />
+</p>
+
 
 
 
@@ -66,20 +72,23 @@ where:
 * $g = [0, 0, -9.81]^T$ is the gravitational acceleration vector in the inertial frame.
 * $\mathbf{C}_{IB}$ is the direction cosine matrix that transforms vectors from the inertial frame to the body frame (it is the transpose of $\mathbf{C}_{BI}$). $\mathbf{C}_{BI}=\mathbf{C}_{IB}^T$
 
-$$
-C_{IB}(q) =
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?C_{IB}(q) =
 \begin{bmatrix}
 1 - 2(q_2^2 + q_3^2) & 2(q_1 q_2 + q_0 q_3) & 2(q_1 q_3 - q_0 q_2) \\
 2(q_1 q_2 - q_0 q_3) & 1 - 2(q_1^2 + q_3^2) & 2(q_2 q_3 + q_0 q_1) \\
 2(q_1 q_3 + q_0 q_2) & 2(q_2 q_3 - q_0 q_1) & 1 - 2(q_1^2 + q_2^2)
-\end{bmatrix}
-$$
+\end{bmatrix}" />
+</p>
+
+
 
 * $\mathbf{I}_b$ is the moment of inertia tensor in the body frame. Note that if the moment of inertia is dependent on the mass and CG location.
 * $\boldsymbol{\Omega}(w)$ is the skew-symmetric matrix representation of the angular velocity $\omega$.
-$$
-\boldsymbol{\Omega}(q) = \begin{bmatrix} 0 & -\omega_x & -\omega_y & -\omega_z \\ \omega_x & 0 & \omega_z & -\omega_y \\ \omega_y & -\omega_z & 0 & \omega_x \\ \omega_z & \omega_y & -\omega_x & 0 \end{bmatrix} 
-$$
+
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\boldsymbol{\Omega}(q) = \begin{bmatrix} 0 & -\omega_x & -\omega_y & -\omega_z \\ \omega_x & 0 & \omega_z & -\omega_y \\ \omega_y & -\omega_z & 0 & \omega_x \\ \omega_z & \omega_y & -\omega_x & 0 \end{bmatrix} " />
+</p>
 
 If some of the math is a bit overwhelming then don't worry. All you need to know is that the state vector holds the data on position, velocity, orientation, and angular rate and all the fancy equations tell us how those states change given some external forces and moments.
 
