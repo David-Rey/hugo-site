@@ -27,15 +27,16 @@ Almost all dynamical systems can be written in the form of $\dot{\mathbf{x}}=f(\
 
 The state vector is all the necessary information to describe the state of the system. For this simulation, the state vector includes mass, position in the inertial frame, velocity in the body frame, quaternion from inertial to body, and angular rate expressed in the body frame.
 
-$$
-\mathbf{x} = 
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\mathbf{x} = 
 \begin{bmatrix}
     p_I \\
     v_B \\
     q_{IB} \\
     \omega_B
-\end{bmatrix}
-$$
+\end{bmatrix}" />
+</p>
+
 
 where:
 * $p_I = [x, y, z]^T$ is the position vector in the inertial frame.
@@ -70,7 +71,7 @@ where:
 * $F_b$ is the sum of external forces in the body frame.
 * $M_b$ is the sum of external moments (torques) in the body frame.
 * $g = [0, 0, -9.81]^T$ is the gravitational acceleration vector in the inertial frame.
-* ${C}_{IB}$ is the direction cosine matrix that transforms vectors from the inertial frame to the body frame (it is the transpose of ${C}_{BI}$). ${C}_{BI}={C}_{IB}^T$
+* ![](https://latex.codecogs.com/svg.image?{C}_{IB}) is the direction cosine matrix that transforms vectors from the inertial frame to the body frame (it is the transpose of ![](https://latex.codecogs.com/svg.image?{C}_{BI})).  ![](https://latex.codecogs.com/svg.image?{C}_{BI}={C}_{IB}^T)
 
 <p align="center">
   <img src="https://latex.codecogs.com/svg.image?C_{IB}(q) =
@@ -150,11 +151,11 @@ In the formula $f$ is our dynamics defined above, $g$ is a function that takes i
 
 Once a trim point is found the dynamics can be linearized around that point by calculating the Jacobian of the dynamics with respect to the state and control and the trim point. The Jacobian can be calculated symbolically or using finite difference.
 
-$$
-A=\frac{\partial f}{\partial x}\Big\vert_{x=x^*} \qquad B=\frac{\partial f}{\partial u}\Big\vert_{u=u^*}
-$$
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?A=\frac{\partial f}{\partial x}\Big\vert_{x=x^*} \qquad B=\frac{\partial f}{\partial u}\Big\vert_{u=u^*}" />
+</p>
 
-From the linearization a LTI system can be derived as the following where $\delta x = x - x^*$ and $\delta u = u - u^*$ where $x$ is the reduced state vector of length 4.
+From the linearization a LTI system can be derived as the following where ![](https://latex.codecogs.com/svg.image?\delta_x=x-x^*)  and ![](https://latex.codecogs.com/svg.image?\delta_u=u-u^*) where $x$ is the reduced state vector of length 4.
 
 $$
 \delta \dot{x} = A \delta x+ B \delta u
