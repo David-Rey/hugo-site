@@ -45,25 +45,13 @@ where:
 
 The dynamics for starship (and any rigid body) are defined below
 
-$$
-% Position
-\dot{p}_I = \mathbf{C}_{BI} v_B
-$$
+$$\dot{p}_I = \mathbf{C}_{BI} v_B$$
 
-$$
-% Velocity
-\dot{v}_B = \frac{F_b}{m} + \mathbf{C}_{IB}(q) g
-$$
+$$\dot{v}_B = \frac{F_b}{m} + \mathbf{C}_{IB}(q) g$$
 
-$$
-% Quaternion
-\dot{q} = \frac{1}{2} \boldsymbol{\Omega}(\omega) q
-$$
+$$\dot{q} = \frac{1}{2} \boldsymbol{\Omega}(\omega) q$$
 
-$$
-% Angular Velocity
-\dot{\omega} = \mathbf{I}_b^{-1} \left(M_b - \omega \times (\mathbf{I}_b \omega) \right)
-$$
+$$\dot{\omega} = \mathbf{I}_b^{-1} \left(M_b - \omega \times (\mathbf{I}_b \omega) \right)$$
 
 
 
