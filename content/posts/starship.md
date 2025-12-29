@@ -70,7 +70,7 @@ where:
 * $F_b$ is the sum of external forces in the body frame.
 * $M_b$ is the sum of external moments (torques) in the body frame.
 * $g = [0, 0, -9.81]^T$ is the gravitational acceleration vector in the inertial frame.
-* $\mathbf{C}_{IB}$ is the direction cosine matrix that transforms vectors from the inertial frame to the body frame (it is the transpose of $\mathbf{C}_{BI}$). $\mathbf{C}_{BI}=\mathbf{C}_{IB}^T$
+* ${C}_{IB}$ is the direction cosine matrix that transforms vectors from the inertial frame to the body frame (it is the transpose of ${C}_{BI}$). ${C}_{BI}={C}_{IB}^T$
 
 <p align="center">
   <img src="https://latex.codecogs.com/svg.image?C_{IB}(q) =
@@ -101,15 +101,16 @@ Every aerodynamic component such as a wing or a fuselage has aerodynamic propert
 
 In order to control the system we must linearize the dynamics around an operating point and apply linear control, however how are we supposed to do that when Starship is falling at terminal velocity? The trick is that we don't linearize around the full 13 dimensional state vector. Rather we linearize around a reduced order model that only captures that thing we want to control, in this case pitch. So the state vector for pitch is as shown below. Where $x_4$ is a 4 dimensional state vector and $x_{13}$ is the full 13 dimensional state vector.
 
-$$
-\mathbf{x_4} = 
+
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\mathbf{x_4} = 
 \begin{bmatrix}
     u \\
     w \\
     q \\
     \theta
-\end{bmatrix}
-$$
+\end{bmatrix}" />
+</p>
 
 where:
 * $u$ is the x velocity in the body frame
@@ -125,8 +126,8 @@ $$
 
 In the formula $f$ is our dynamics defined above, $g$ is a function that takes in the full state vector and outputs the reduced state vector $x_4 = g(x_{13})$. The variables being optimized are $z$ which in this case are forward velocity ($u$) downward velocity ($w$) and pitch control. In order to convert pitch command to flap deflections an allocation matrix is used which is defined below.
 
-$$
-\begin{bmatrix}
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\begin{bmatrix}
     \delta_{fr} \\
     \delta_{fl} \\
     \delta_{br} \\
@@ -143,8 +144,9 @@ $$
     u_{yaw} \\
     u_{roll} \\
     u_{drag}
-\end{bmatrix}
-$$
+\end{bmatrix}" />
+</p>
+
 
 Once a trim point is found the dynamics can be linearized around that point by calculating the Jacobian of the dynamics with respect to the state and control and the trim point. The Jacobian can be calculated symbolically or using finite difference.
 
