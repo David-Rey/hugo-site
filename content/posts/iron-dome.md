@@ -134,34 +134,72 @@ Below is are some results on what the 3d trajectory of the golf ball looks like 
 
 ## Tracking (UKF)
 
-Now that we have a way to simulate our sensor we need to take that measurement and somehow figure out our state (position, velocity and spin). There are many ways to do this however the most advanced and robust is using something called a Kalman Filter. A Kalman Filter takes in noisy measurements and a system model to produce an optimal estimate of the current state, accounting for the uncertainty in both the dynamics and the measurements. Put simply a Kalman filter is just a tracker, in this case it's tracking golf balls.
+Now that we have a way to simulate our sensor, we need to take those measurements and somehow determine our state (position, velocity, and spin). There are many ways to do this, but the most advanced and robust method is using a Kalman Filter. A Kalman Filter takes in noisy measurements and a system model to produce an optimal estimate of the current state, accounting for the uncertainty in both the dynamics and the measurements. Put simply, a Kalman Filter is a tracker—in this case, it's tracking golf balls.
 
-There are two ways to implement the Kalman Filter. The first is using an Extended Kalman Filter (EKF) and the other uses a unscented Kalman Filter (UKF). There's few  technical differences between the two however the UKF is more efficient as if does not need to calculate a Jacobian at every time step.
+There are two ways to implement the Kalman Filter for nonlinear systems. The first is using an Extended Kalman Filter (EKF) and the other uses a unscented Kalman Filter (UKF). While there are several technical differences between the two, the UKF is often more efficient and easier to implement because it does not require calculating a Jacobian at every time step.
 
-Every Kalman Filter works by getting a state estimate and using measurements to update the uncertainty of that state. You can think of the uncertainty as some confidence "bubble" around the state for which that true state is some  likelihood of being in that "bubble". The UKF works by propagating a set of sigma points from the uncertainty distribution through the dynamics and using the output of those points to get a new uncertainty and estimate. The idea calculating uncertainty from passing points through a nonlinear function is called a Unscented Transform.
+Every Kalman Filter works by maintaining a state estimate and using new measurements to update the uncertainty of that state. You can think of this uncertainty as a "confidence bubble" around the estimate. The UKF works by propagating a specific set of sigma points from this uncertainty distribution through the actual nonlinear dynamics. By observing where these points land, the filter can calculate a new, more accurate estimate and uncertainty. This process of calculating uncertainty by passing discrete points through a nonlinear function is known as the Unscented Transform.
 
 ### UKF Initialization
 
 The first step in the UKF is setting some tuning parameters. These parameters tell the UKF how to distribute the sigma points. Below is the formula for ![](https://latex.codecogs.com/svg.image?\lambda) which is the parameter for sigma point spacing.
 
-$$
-\lambda = \alpha^2 (N+\kappa)-N
-$$
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\lambda = \alpha^2 (N+\kappa)-N" />
+</p>
 
+where
 * ![](https://latex.codecogs.com/svg.image?\alpha) is a tuning parameter from 0 to 1 which controls the spread of sigma points
 * ![](https://latex.codecogs.com/svg.image?N) is the number of states. In our example ![](https://latex.codecogs.com/svg.image?N=9)
 * ![](https://latex.codecogs.com/svg.image?\kappa) is a secondary scaling parameter that is usually set to 0
 
-From this the weighs of 
+From this the weighs for the sigma points can be computed using the formula below.
 
-### UKF Predict
 
 <p align="center">
   <img src="https://latex.codecogs.com/svg.image?\begin{aligned}
-\chi_{n,n}^{(i)} &= \hat{\mathbf{x}}_{n,n} + \left(\sqrt{(N + \kappa) \mathbf{P}_{n,n}}\right)_i, & i &= 1, \dots, N \\
-\chi_{n,n}^{(i)} &= \hat{\mathbf{x}}_{n,n} - \left(\sqrt{(N + \kappa) \mathbf{P}_{n,n}}\right)_{i-N}, & i &= N + 1, \dots, 2N
+w_0^{(m)} &= \lambda / (N + \kappa) \\
+w_0^{(c)} &= \lambda / (N + \lambda) + (1 - \alpha^2) + \beta \\
+w_i &= 1 / 2(N + \lambda), \quad i > 0
 \end{aligned}" />
 </p>
+
+where
+* ![](https://latex.codecogs.com/svg.image?w_0^{(m)}) is the weight of the first sigma point when computed around the mean
+* ![](https://latex.codecogs.com/svg.image?w_0^{(c)}) is the weight of the first sigma point when computed around the covariance
+* ![](https://latex.codecogs.com/svg.image?w_i) is the weight of the other sigma points when computed around the mean or covariance
+
+Finally before the main algorithm can run the user must specify an initial state ![](https://latex.codecogs.com/svg.image?\hat{\mathbf{x}}_{0,0}) and uncertainty ![](https://latex.codecogs.com/svg.image?\mathbf{P}_{0,0}). If the initial states is not known then it can be set to a guess state and the initial uncertainty can be set to be a large number.
+
+### UKF Predict
+
+The first part of the predict step is to calculate the sigma points that will get passed into the dynamics.
+
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\begin{aligned}
+\mathcal{X}_{n,n}^{(0)} &= \hat{\mathbf{x}}_{n,n} \\
+\mathcal{X}_{n,n}^{(i)} &= \hat{\mathbf{x}}_{n,n} + \left( \sqrt{(N + \lambda) \mathbf{P}_{n,n}} \right)_i, & i &= 1, \dots, N \\
+\mathcal{X}_{n,n}^{(i+N)} &= \hat{\mathbf{x}}_{n,n} - \left( \sqrt{(N + \lambda) \mathbf{P}_{n,n}} \right)_{i}, & i &= N+1, \dots, 2N
+\end{aligned}" />
+</p>
+
+Once the sigma points are found the can be passed into the dynamics and propagated using a ODE solver.
+
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\mathcal{X}_{n+1,n} = f(\mathcal{X}_{n,n})" />
+</p>
+
+Next a new estimate can found by taking a weighted average of the sigma points and a new covariance can be found using the formula below.
+
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\begin{aligned}
+\widehat{\mathbf{x}}_{n+1,n} &= \sum_{i=0}^{2N} w_i \mathcal{X}_{n+1,n}^{(i)} \\
+\mathbf{P}_{n+1,n} &= \sum_{i=0}^{2N} w_i \left( \mathcal{X}_{n+1,n}^{(i)} - \widehat{\mathbf{x}}_{n+1,n} \right) \left( \mathcal{X}_{n+1,n}^{(i)} - \widehat{\mathbf{x}}_{n+1,n} \right)^T + \mathbf{Q}
+\end{aligned}" />
+</p>
+
+The added ![](https://latex.codecogs.com/svg.image?\mathbf{Q}) matrix is the process noise which is added to account for any unmodeled disturbances such as wind.
+
 
 ### UKF Update
 
