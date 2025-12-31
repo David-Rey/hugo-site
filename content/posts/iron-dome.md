@@ -203,7 +203,17 @@ The added ![](https://latex.codecogs.com/svg.image?\mathbf{Q}) matrix is the pro
 
 ### UKF Update
 
-
+$$
+\begin{aligned}
+\mathcal{Z}_{n} &= \mathbf{h}\left(\mathcal{X}_{n, n-1}\right) \\
+\boldsymbol{\mu}_{z_{n}} &= \sum_{i=0}^{2 N} w_{i} \mathcal{Z}_{n}^{(i)} \\
+\mathbf{P}_{z_{n}} &= \sum_{i=0}^{2 N} w_{i}\left(\mathcal{Z}_{n}^{(i)}-\overline{\mathbf{z}}_{n}\right)\left(\mathcal{Z}_{n}^{(i)}-\overline{\mathbf{z}}_{n}\right)^{T}+\mathbf{R}_{n} \\
+\mathbf{P}_{x z_{n}} &= \sum_{i=0}^{2 N} w_{i}\left(\mathcal{X}_{n, n-1}^{(i)}-\widehat{\mathbf{x}}_{n, n-1}\right)\left(\mathcal{Z}_{n}^{(i)}-\overline{\mathbf{z}}_{n}\right)^{T} \\
+\mathbf{K}_{n} &= \mathbf{P}_{x z_{n}}\left(\mathbf{P}_{z_{n}}\right)^{-1} \\
+\widehat{\mathbf{x}}_{n, n} &= \widehat{\mathbf{x}}_{n, n-1}+\mathbf{K}_{n}\left(\mathbf{z}_{n}-\overline{\mathbf{z}}_{n}\right) \\
+\mathbf{P}_{n, n} &= \mathbf{P}_{n-1, n}-\mathbf{K}_{n} \mathbf{P}_{z_{n}} \mathbf{K}_{n}^{T}
+\end{aligned}
+$$
 
 
 
