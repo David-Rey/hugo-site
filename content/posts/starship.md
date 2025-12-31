@@ -4,7 +4,7 @@
   featured: false
   tags: "software"
   tranding: true
-  readTime: "6 min"
+  readTime: "5 min"
   thumbnail: /images/blog/starship/starship_thumbnail.png
   featureImage: /images/blog/starship/starship_thumbnail.png
   math: true

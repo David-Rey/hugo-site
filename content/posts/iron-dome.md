@@ -1,5 +1,5 @@
 ---
-  title: "Golf Ball UKF Tracker"
+  title: "Golf Ball Tracker"
   date: 2023-12-27T12:00:00+06:00
   featured: false
   tags: "software"
