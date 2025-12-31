@@ -267,7 +267,7 @@ The initial conditions for the golf ball in the simulation with $v_0=50$ m/s and
   </tbody>
 </table>
 
-Below are some figures of trajectory with the black line representing the true value and the red dots representing the position estimate. Also in the figure are the camera frustums and below that are the camera views.
+Below are some figures of trajectory with the black line representing the true value and the red dots representing the position estimate. The visualizations also include the camera frustums to show the sensors' field of view, followed by the corresponding projected views from each camera.
 
 <p align="center">
   <img src="/images/blog/iron-dome/results-3d.png" alt="Alt text" width="600">
@@ -284,19 +284,27 @@ Below are some figures of trajectory with the black line representing the true v
   </tr>
 </table>
 
-Below are plots of the error showing a slow convergence to low error. This means that over time the sensors get more and more information leading to a lower error.
+Below are the error plots, which shows a slow convergence over the flight. This trend indicates that as the sensors collect more data over time, the filter's estimate becomes increasingly accurate, resulting in a steady reduction of error.
 
 <p align="center">
   <img src="/images/blog/iron-dome/results-error.png" alt="Alt text" width="600">
 </p>
 
-The same can be said for covariance which as shown below constantly decreases as time goes on
+The same can be said for covariance which as shown below constantly decreases as time goes on.
 
 <p align="center">
   <img src="/images/blog/iron-dome/results-cov.png" alt="Alt text" width="600">
 </p>
 
 ## Monte Carlo
+
+Because random noise is injected into the simulation to mimic real-life sensor behavior, every simulation run will be different. To fully evaluate the filter’s performance, a Monte Carlo simulation must be conducted. This is essentially a way of running the simulation many times to calculate the average performance of the filter across a wide range of random scenarios. Below is a figure of one such Monte Carlo plotting position error and uncertainty.
+
+<p align="center">
+  <img src="/images/blog/iron-dome/monteCarlo.png" alt="Alt text" width="600">
+</p>
+
+As one can see from the figure uncertainty does not change much from run to run. This is because at every run the same initial uncertainty and all the measurements are being pulled from the same distribution. The error bounces around much more as some runs get more lucky than others however, the Monte Carlo analysis shows that across hundreds of trials, the error consistently remains within our predicted "confidence bubble".
 
 ## Conclusion
 
