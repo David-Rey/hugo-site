@@ -36,7 +36,9 @@
 
 Recently, my parents moved into a beautiful new house directly on a golf course. This is heaven for my dad, who loves golf, but there is one major problem with living directly on a course: golf balls! Unfortunately, a few terrible golfers have already hit the house, as seen in the picture below.
 
-[Add Image Here]
+<p align="center">
+  <img src="/images/blog/iron-dome/house.JPEG" alt="Alt text" width="600">
+</p>
 
 This got me thinking: what if I made my own Iron Dome system to defend the house against golf balls? There are two major parts to this problem: the first is tracking, and the second is interception. I focused my energy on the first problem of tracking and simulated it in MATLAB to see if it was possible.
 ## Golf Ball Dynamics
