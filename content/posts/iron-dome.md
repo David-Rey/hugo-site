@@ -34,12 +34,13 @@
 
 </style>
 
-Recently my parents moved into a beautiful new house directly on a golf course. This is heaven for my Dad who loves golf but there is one major problem of living directly on a golf course: Golf Balls! Unfortunately a few terrible golfers have hit our house as seen in the picture below.
+Recently, my parents moved into a beautiful new house directly on a golf course. This is heaven for my dad, who loves golf, but there is one major problem with living directly on a course: golf balls! Unfortunately, a few terrible golfers have already hit the house, as seen in the picture below.
 
-[Add Image Here]
+<p align="center">
+  <img src="/images/blog/iron-dome/house.JPEG" alt="Alt text" width="600">
+</p>
 
-This got me thinking what if I made my own Iron Dome system to defend my house against golf balls? Well, there are two major parts to this problem. This first is tracking and the second is the interception. I focused my energy into the first problem of tracking and simulated it in MATLAB to see if it was possible.
-
+This got me thinking: what if I made my own Iron Dome system to defend the house against golf balls? There are two major parts to this problem: the first is tracking, and the second is interception. I focused my energy on the first problem of tracking and simulated it in MATLAB to see if it was possible.
 ## Golf Ball Dynamics
 
 Before we can track a golf ball we first must be able to simulate it as a dynamical system. Almost all dynamical systems can be written in the form of $\dot{\mathbf{x}}=f(\mathbf{x})$ and a golf ball is no exception. The state vector $\mathbf{x}$ holds position, velocity and angular rate totaling 9 states and 6 degrees of freedom.
@@ -55,8 +56,8 @@ Before we can track a golf ball we first must be able to simulate it as a dynami
 
 
 where:
-* $\vec{x} = [x, y, z]^T$ is the position vector in the inertial frame.
-* $\vec{v} = [v_x, v_y, v_z]^T$ is the velocity vector in the inertial frame.
+* $\vec{x} = [x, y, z]^T$ is the position vector in the inertial frame
+* $\vec{v} = [v_x, v_y, v_z]^T$ is the velocity vector in the inertial frame
 * $\vec{\omega} = [\omega_x, \omega_y, \omega_z]^T$ is the angular rotation in the body frame
 
 <table class="styled-table">  <thead>
@@ -203,23 +204,111 @@ The added ![](https://latex.codecogs.com/svg.image?\mathbf{Q}) matrix is the pro
 
 ### UKF Update
 
-$$
-\begin{aligned}
-\mathcal{Z}_{n} &= \mathbf{h}\left(\mathcal{X}_{n, n-1}\right) \\
-\boldsymbol{\mu}_{z_{n}} &= \sum_{i=0}^{2 N} w_{i} \mathcal{Z}_{n}^{(i)} \\
+The next step of the UKF algorithm is called the update step. In this step we correct our estimate and uncertainty with a new measurement. The first part og the update step is to transform our sigma points from state space to measurement using a observation function ![](https://latex.codecogs.com/svg.image?\mathbf{h}).
+
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\mathcal{Z}_{n} = \mathbf{h}\left(\mathcal{X}_{n, n-1}\right)" />
+</p>
+
+This observation function is the same function we defined above in the Camera Projection section. All this function does is project points from the state space ($\mathbf{x}$) into the observation space ($\mathbf{z}$), where the observation space is defined by $u$ and $v$ coordinates.
+
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\overline{\mathbf{z}}_{n} = \sum_{i=0}^{2 N} w_{i} \mathcal{Z}_{n}^{(i)} " />
+</p>
+
+From these propagated sigma points, we can calculate a predicted measurement using the weighted mean of the points in the measurement space. In other words, ![](https://latex.codecogs.com/svg.image?\overline{\mathbf{z}}_{n}) represents our "best guess" of what the sensor will see, given our current state estimate. Next, we calculate the innovation covariance, ![](https://latex.codecogs.com/svg.image?\mathbf{P}_{z_{n}}), and the cross-covariance, ![](https://latex.codecogs.com/svg.image?\mathbf{P}_{xz_{n}}), between the states and measurements. These are found using the formulas below, where ![](https://latex.codecogs.com/svg.image?\mathbf{R}_{n}) represents the sensor uncertainty (or measurement noise). These matrices are essential because they determine the Kalman Gain, which dictates how much we should adjust our state estimate based on the difference between the actual and predicted measurements.
+
+
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\begin{aligned}
 \mathbf{P}_{z_{n}} &= \sum_{i=0}^{2 N} w_{i}\left(\mathcal{Z}_{n}^{(i)}-\overline{\mathbf{z}}_{n}\right)\left(\mathcal{Z}_{n}^{(i)}-\overline{\mathbf{z}}_{n}\right)^{T}+\mathbf{R}_{n} \\
-\mathbf{P}_{x z_{n}} &= \sum_{i=0}^{2 N} w_{i}\left(\mathcal{X}_{n, n-1}^{(i)}-\widehat{\mathbf{x}}_{n, n-1}\right)\left(\mathcal{Z}_{n}^{(i)}-\overline{\mathbf{z}}_{n}\right)^{T} \\
-\mathbf{K}_{n} &= \mathbf{P}_{x z_{n}}\left(\mathbf{P}_{z_{n}}\right)^{-1} \\
+\mathbf{P}_{x z_{n}} &= \sum_{i=0}^{2 N} w_{i}\left(\mathcal{X}_{n, n-1}^{(i)}-\widehat{\mathbf{x}}_{n, n-1}\right)\left(\mathcal{Z}_{n}^{(i)}-\overline{\mathbf{z}}_{n}\right)^{T}\end{aligned}" />
+</p>
+
+From this the kalman gain can be calculated using the formula below.
+
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\mathbf{K}_{n} = \mathbf{P}_{x z_{n}}\left(\mathbf{P}_{z_{n}}\right)^{-1}" />
+</p>
+
+The next formulas update the state estimate given the previous estimate and the current measurement, where ![](https://latex.codecogs.com/svg.image?\mathbf{z}_{n}) is the measurement received from the sensor. The covariance is also updated using the previous covariance and the calculated Kalman gain.
+
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\begin{aligned}
 \widehat{\mathbf{x}}_{n, n} &= \widehat{\mathbf{x}}_{n, n-1}+\mathbf{K}_{n}\left(\mathbf{z}_{n}-\overline{\mathbf{z}}_{n}\right) \\
 \mathbf{P}_{n, n} &= \mathbf{P}_{n-1, n}-\mathbf{K}_{n} \mathbf{P}_{z_{n}} \mathbf{K}_{n}^{T}
-\end{aligned}
-$$
+\end{aligned}" />
+</p>
 
-
-
+With the update step complete, the filter has officially 'fused' the new camera data with our physical model. This continuous loop of prediction and correction allows the system to maintain a lock on the golf ball even if the sensor noise is high or the trajectory is highly non-linear.
 
 ## Results
 
-### Monte Carlo
+The initial conditions for the golf ball in the simulation with $v_0=50$ m/s and $\alpha=40^\circ$. The standard deviation of the camera measurement is 0.03 leading to the $\mathbf{R}$ be a 2 by 2 matrix with diagonals values of $0.03^2$ and all the diagonals of the $\mathbf{Q}$ matrix are 0.01.
 
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Initial Conditions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Position (m)</b></td>
+      <td>$[15, -200, 0]$</td>
+    </tr>
+    <tr>
+      <td><b>Velocity (m/s)</b></td>
+      <td>$[0, v_0 \text{cos}(\alpha), v_0 \text{sin}(\alpha)]$</td>
+    </tr>
+    <tr>
+      <td><b>Angular Rate (rad/s)</b></td>
+      <td>$[10, 30, 100]$</td>
+    </tr>
+  </tbody>
+</table>
+
+Below are some figures of trajectory with the black line representing the true value and the red dots representing the position estimate. The visualizations also include the camera frustums to show the sensors' field of view, followed by the corresponding projected views from each camera.
+
+<p align="center">
+  <img src="/images/blog/iron-dome/results-3d.png" alt="Alt text" width="600">
+</p>
+
+<table align="center">
+  <tr>
+    <td>
+      <img src="/images/blog/iron-dome/results-cam1.png" alt="Camera 1 View" width="350">
+    </td>
+    <td>
+      <img src="/images/blog/iron-dome/results-cam2.png" alt="Camera 2 View" width="350">
+    </td>
+  </tr>
+</table>
+
+Below are the error plots, which shows a slow convergence over the flight. This trend indicates that as the sensors collect more data over time, the filter's estimate becomes increasingly accurate, resulting in a steady reduction of error.
+
+<p align="center">
+  <img src="/images/blog/iron-dome/results-error.png" alt="Alt text" width="600">
+</p>
+
+The same can be said for covariance which as shown below constantly decreases as time goes on.
+
+<p align="center">
+  <img src="/images/blog/iron-dome/results-cov.png" alt="Alt text" width="600">
+</p>
+
+## Monte Carlo
+
+Because random noise is injected into the simulation to mimic real-life sensor behavior, every simulation run will be different. To fully evaluate the filter’s performance, a Monte Carlo simulation must be conducted. This is essentially a way of running the simulation many times to calculate the average performance of the filter across a wide range of random scenarios. Below is a figure of one such Monte Carlo plotting position error and uncertainty.
+
+<p align="center">
+  <img src="/images/blog/iron-dome/monteCarlo.png" alt="Alt text" width="600">
+</p>
+
+As one can see from the figure uncertainty does not change much from run to run. This is because at every run the same initial uncertainty and all the measurements are being pulled from the same distribution. The error bounces around much more as some runs get more lucky than others however, the Monte Carlo analysis shows that across hundreds of trials, the error consistently remains within our predicted "confidence bubble".
+
+## Conclusion
+
+So, what did all this math tell us? Well, first of all, the tracking problem is quite difficult. In our simulation, the sensor is very noisy; however, even when I turn the noise down, the uncertainty remains around 1 meter. I might be able to reduce this with more precise tuning, but the main point is that golf balls only have a radius of about 2 cm. This means I would need to reduce the uncertainty by almost two orders of magnitude to achieve a direct hit. This realization made it clear that a interception is a massive challenge, and for now, the most practical solution is to focus on a early warning system. While my house might still take a hit, at least we'll see it coming.
 
