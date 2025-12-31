@@ -149,13 +149,13 @@ In the formula $f$ is our dynamics defined above, $g$ is a function that takes i
 </p>
 
 
-Once a trim point is found the dynamics can be linearized around that point by calculating the Jacobian of the dynamics with respect to the state and control and the trim point. The Jacobian can be calculated symbolically or using finite difference.
+Once a trim point is found the dynamics can be linearized around that point by calculating the Jacobian of the dynamics with respect to the state and control. The Jacobian can be calculated symbolically or using finite difference.
 
 <p align="center">
   <img src="https://latex.codecogs.com/svg.image?A=\frac{\partial f}{\partial x}\Big\vert_{x=x^*} \qquad B=\frac{\partial f}{\partial u}\Big\vert_{u=u^*}" />
 </p>
 
-From the linearization a LTI system can be derived as the following where ![](https://latex.codecogs.com/svg.image?\delta_x=x-x^*)  and ![](https://latex.codecogs.com/svg.image?\delta_u=u-u^*) where $x$ is the reduced state vector of length 4.
+From the linearization a LTI system can be derived as the following where ![](https://latex.codecogs.com/svg.image?\delta%20x=x-x^*)  and ![](https://latex.codecogs.com/svg.image?\delta%20u=u-u^*) where $x$ is the reduced state vector of length 4.
 
 $$
 \delta \dot{x} = A \delta x+ B \delta u
