@@ -1,6 +1,6 @@
 baseURL = "https://davidreynolds.xyz"
 languageCode = "en-us"
-paginate = 6
+paginate = 10
 summarylength = 10
 title = "David Reynolds"
 theme = "blogge-hugo-theme"
