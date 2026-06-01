@@ -41,28 +41,26 @@ The first step in any control project is the modeling phase. Since Robust Contro
   <img src="https://latex.codecogs.com/svg.image? 
 \begin{bmatrix}
     \dot{\alpha} \\
-    \dot{q}  \\
-    \dot{\theta} 
+    \dot{q}
     \end{bmatrix}
      = 
     \begin{bmatrix}
-    -\tilde{Z}_{\alpha} & 1 & 0 \\
-    M_\alpha & 0 & 0 \\
-    0 & 1 & 0
+    -\tilde{Z}_{\alpha} & 1 \\
+    M_\alpha & 0
     \end{bmatrix}
     \begin{bmatrix}
     \alpha \\
-    q  \\
-    \theta
+    q
     \end{bmatrix}
     + 
     \begin{bmatrix}
     -\tilde{Z}_{\delta} \\
-    M_\delta \\
-    0
+    M_\delta
     \end{bmatrix}
     \delta" />
 </p>
+
+
 
 The states in model are angle of attack and pitch rate with the input being gimbal deflection. The coefficients can be derived from the flight conditions and properties about the rocket. Below are the formulas to calculate the aerodynamics coefficients.
 
@@ -204,7 +202,7 @@ The transfer function for our rocket becomes the following:
 
 <p align="center">
   <img src="https://latex.codecogs.com/svg.image? 
-    G_p(s) = \frac{ M_{\delta} \tilde{Z}_{\alpha} - M_{\alpha} \tilde{Z}_{\delta} + M_{\delta}s } {s(s^2 + \tilde{Z}_{\alpha}s-M_{\alpha})}" />
+    G_p(s) = \frac{ M_{\delta} \tilde{Z}_{\alpha} - M_{\alpha} \tilde{Z}_{\delta} + M_{\delta}s } {s^2 + \tilde{Z}_{\alpha}s-M_{\alpha}}" />
 </p>
 
 This transfer function relates the thrust vector control (TVC) deflection angle to the angular rate of the rocket. While this is a solid baseline model, capturing the full vehicle dynamics requires accounting for the servo actuator and the time delay between the command signal and servo response.
@@ -213,13 +211,25 @@ The servo can be modeled as a second-order system characterized by a specific na
 
 <p align="center">
   <img src="https://latex.codecogs.com/svg.image? 
-    G(s) = \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2}" />
+    G_s(s) = \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2}" />
 </p>
 
 A second-order Padé approximation is used to represent the servo's time lag. This transfer function effectively simulates the delay of a signal within a specific bandwidth. Since the servo's time lag is approximately 20 milliseconds, a second-order approximation is sufficient for this model.The transfer function for a second-order Padé approximation of a time delay $\tau$ is expressed as:
 
 <p align="center">
   <img src="https://latex.codecogs.com/svg.image? 
-    $$R_2(s) = \frac{s^2\tau^2 - 6s\tau + 12}{s^2\tau^2 + 6s\tau + 12}$$" />
+    $$T(s) = \frac{s^2\tau^2 - 6s\tau + 12}{s^2\tau^2 + 6s\tau + 12}$$" />
+</p>
+
+The nominal plant we are attempting to control is simply the combination of the three transfer functions derived above times a integrator (1/s) to convert from pitch rate to pitch. This combined transfer function relates the commanded thrust vector control (TVC) deflection to the actual rocket pitch.  Because the plant contains a pure integrator it is classified as a Type 1 system. For this type of system, a PD controller is an excellent choice. While more advanced robust controllers exist, a PD architecture offers a easy implementation on flight hardware. Below is a full block level diagram of the closed loop system with the controller and plant:
+
+<p align="center">
+  <img src="/images/blog/robust-control/nominal_block.jpg" alt="Alt text" width="600">
+</p>
+
+Now that the plant is defined, we can use linear techniques to tune the PD controller. However, there is one problem with this approach: it does not take into account uncertainty. If we tune our controller using the nominal plant, we assume that our aerodynamic coefficients, mass properties, and servo dynamics are exactly what we expect. In reality, we do not know the exact servo dynamics or aerodynamic coefficients. This is where robust control comes in. Robust control is the study of dynamical systems when uncertainty and disturbances are introduced. This theory allows us to develop a controller—or, in this case, find specific P and D gains—such that the controller can stabilize any combination of uncertain systems. To do this, we are going to use an algorithm called $\mu$-synthesis, utilizing the MATLAB Robust Control Toolbox. The first step is to define the disturbances and noise entering the system. In this analysis, noise enters the system in two places. The first is at the gimbal, which simulates disturbances acting on the gimbal mount during launch. The second is added to the output of the airframe to simulate IMU noise.
+
+<p align="center">
+  <img src="/images/blog/robust-control/augmented_sys.jpg" alt="Alt text" width="800">
 </p>
 
